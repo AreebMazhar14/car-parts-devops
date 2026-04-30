@@ -1,0 +1,27 @@
+---
+- name: Setup and Deploy Car Parts
+  hosts: webserver
+  become: yes
+  tasks:
+    - name: Install Docker
+      yum:
+        name: docker
+        state: present
+
+    - name: Start Docker Service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Copy app files to new server
+      copy:
+        src: ./ 
+        dest: /home/ec2-user/app/
+
+    - name: Build and Run Container
+      shell: |
+        cd /home/ec2-user/app/
+        docker build -t car-parts-local .
+        sudo docker rm -f car-parts-app || true
+        sudo docker run -d -p 80:5000 --name car-parts-app car-parts-local

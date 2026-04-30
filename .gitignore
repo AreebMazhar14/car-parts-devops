@@ -1,0 +1,11 @@
+# AWS Keys and SSH
+*.pem
+
+# Terraform files
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Python cache
+__pycache__/
+*.pyc
