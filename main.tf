@@ -14,8 +14,8 @@ provider "aws" {
 }
 
 resource "aws_instance" "car_parts_server" {
-  # This is a fresh Amazon Linux 2023 AMI for Mumbai
-  ami           = "ami-022d03f649d12a49d" 
+  # This is a fresh Ubuntu 2023 AMI for Mumbai
+  ami           = "ami-07a00cf47dbbc844c" 
   
   # Changed to t3.micro which is widely accepted in Free Tier for Mumbai
   instance_type = "t3.micro"

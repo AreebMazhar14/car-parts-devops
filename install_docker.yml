@@ -4,7 +4,7 @@
   become: yes
   tasks:
     - name: Install Docker
-      yum:
+      apt:
         name: docker
         state: present
 
@@ -17,11 +17,11 @@
     - name: Copy app files to new server
       copy:
         src: ./ 
-        dest: /home/ec2-user/app/
+        dest: /home/ubuntu/
 
     - name: Build and Run Container
       shell: |
-        cd /home/ec2-user/app/
+        cd /home/ubuntu/app/
         docker build -t car-parts-local .
         sudo docker rm -f car-parts-app || true
         sudo docker run -d -p 80:5000 --name car-parts-app car-parts-local
